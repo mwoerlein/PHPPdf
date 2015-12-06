@@ -12,6 +12,7 @@
         }     
     ],
     "require": {
+        "mwoerlein/vector-graphics": ">=0.1",
         "zendframework/zendpdf":  ">=2.0.0,<2.4",
         "zendframework/zend-cache":  ">=2.0.0,<2.4",
         "zendframework/zend-memory": ">=2.0.0,<2.4"

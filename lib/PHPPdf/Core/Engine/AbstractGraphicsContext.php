@@ -8,6 +8,7 @@
 
 namespace PHPPdf\Core\Engine;
 
+use VectorGraphics\Model\Graphic;
 use Zend\Barcode\Object\ObjectInterface as Barcode;
 
 /**
@@ -177,4 +178,11 @@ abstract class AbstractGraphicsContext implements GraphicsContext
     }
     
     abstract protected function doDrawArc($x, $y, $width, $height, $start, $end, $fillType);
+
+    public function drawVectorGraphic(Graphic $graphic, $x, $y, $width, $height, $keepRatio = true)
+    {
+        $this->addToQueue('doDrawVectorGraphic', array($graphic, $x, $y, $width, $height, $keepRatio));
+    }
+
+    abstract protected function doDrawVectorGraphic(Graphic $graphic, $x, $y, $width, $height, $keepRatio = true);
 }

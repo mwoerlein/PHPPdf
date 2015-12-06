@@ -8,6 +8,7 @@
 
 namespace PHPPdf\Core\Engine;
 
+use VectorGraphics\Model\Graphic;
 use Zend\Barcode\Object\ObjectInterface;
 
 /**
@@ -68,6 +69,8 @@ interface GraphicsContext
     public function drawEllipse($x, $y, $width, $height, $fillType = self::SHAPE_DRAW_FILL);
     
     public function drawArc($x, $y, $width, $height, $start, $end, $fillType = self::SHAPE_DRAW_FILL);
+    
+    public function drawVectorGraphic(Graphic $graphic, $x, $y, $width, $height, $keepRatio = true);
     
     public function setLineWidth($width);
 

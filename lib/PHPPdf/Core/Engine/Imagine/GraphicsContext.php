@@ -11,6 +11,7 @@ namespace PHPPdf\Core\Engine\Imagine;
 use Imagine\Image\BoxInterface;
 use Imagine\Image\PointInterface;
 use PHPPdf\Bridge\Imagine\Image\Point;
+use VectorGraphics\Model\Graphic;
 use Imagine\Image\Box;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\ImagineInterface;
@@ -658,5 +659,11 @@ class GraphicsContext extends AbstractGraphicsContext
         {
             $image->draw()->pieSlice($point, $box, $start, $end, $color, false);
         }
+    }
+
+    protected function doDrawVectorGraphic(Graphic $graphic, $x, $y, $width, $height, $keepRatio = true)
+    {
+        //not supported
+        throw new \Exception('not supported, yet');
     }
 }

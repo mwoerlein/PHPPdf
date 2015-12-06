@@ -15,6 +15,8 @@ use PHPPdf\Core\Engine\AbstractGraphicsContext;
 use PHPPdf\Core\Engine\GraphicsContext as BaseGraphicsContext;
 use PHPPdf\Core\Engine\Font as BaseFont;
 use PHPPdf\Core\Engine\Image as BaseImage;
+use VectorGraphics\IO\ZF\PDFWriter;
+use VectorGraphics\Model\Graphic;
 use ZendPdf\Page as ZendPage;
 use ZendPdf\InternalType\NumericObject;
 use ZendPdf\InternalType\StringObject;
@@ -53,7 +55,7 @@ class GraphicsContext extends AbstractGraphicsContext
     private $engine = null;
 
     /**
-     * @var ZendPdf\Page
+     * @var Page
      */
     private $page;
     
@@ -475,5 +477,10 @@ class GraphicsContext extends AbstractGraphicsContext
         $start = deg2rad($start + 180);
         $end = deg2rad($end + 180);
         $this->page->drawCircle($x, $y, $width/2, $start, $end, $this->translateFillType($fillType));
+    }
+
+    protected function doDrawVectorGraphic(Graphic $graphic, $x, $y, $width, $height, $keepRatio = true)
+    {
+        PDFWriter::instance()->drawGraphic($this->page, $graphic, $x, $y, $width, $height, $keepRatio);
     }
 }
